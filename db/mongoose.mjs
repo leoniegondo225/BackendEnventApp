@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 export const MongooseConnect = async (req, res) => {
     try {
-        await mongoose.connect(process.env.MongooseUrl, {
+        const uri = `mongodb+srv://leoniegondo:${process.env.MongoosePassword}@cluster0.7l50j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+        await mongoose.connect(uri, {
             dbName: "EnventDB",
         })
         console.log("connexion à mongoose réussi")
