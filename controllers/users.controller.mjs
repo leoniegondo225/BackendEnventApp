@@ -18,7 +18,7 @@ export const SignUp = async (req, res) => {
                 res.json({message: "ok", data})
             }
         } else {
-            res.json("Une erreure s'est produite, vérifiez votre connection internet")
+            res.json("Une erreure s'est produite pendant la connexion à la base de données, vérifiez votre connection internet")
             console.log(db)
             return
         }
@@ -26,7 +26,7 @@ export const SignUp = async (req, res) => {
         mongoose.disconnect()
 
     } catch (error) {
-        res.json("Une erreur inconnue s'est produit")
+        res.json({message: "Une erreur inconnue s'est produit", error})
         console.log(error)
     }
 }
