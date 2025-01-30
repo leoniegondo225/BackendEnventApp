@@ -9,9 +9,9 @@ export const SignUp = async (req, res) => {
     try {
         const db = await MongooseConnect()
         if (db === "ok") {
-            
+            //pour créer un nouvel utilisateur avec firebase
             const data = await createUserWithEmailAndPassword(auth, email, password)
-            const uid = data.user.uid
+            const uid = data.user.uid //on recupère l'uid de l'utilisateur que renvoi firebase
             if (uid && uid !== undefined && uid !== "") {
                 const data = new UserModel({uid, nom, email})
                 await data.save()
@@ -36,9 +36,9 @@ export const Login = async (req, res) => {
     try {
         const db = await MongooseConnect()
         if (db === "ok") {
-            
+            //pour se connecter avec firebase
             const data = await signInWithEmailAndPassword(auth, email, password)
-            const uid = data.user.uid
+            const uid = data.user.uid //on recupère l'uid de l'utilisateur que renvoi firebase
             if (uid && uid !== undefined && uid !== "") {
                 const data = await UserModel.findOne({uid})
                 res.json({message: "ok", data})
